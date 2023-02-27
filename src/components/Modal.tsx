@@ -28,7 +28,7 @@ const Modal: FC<PropsWithChildren<{ showing: boolean; close: () => void }>> = ({
     onClick={close}
   >
     <div
-      className="bg-teal-100 text-teal-800 w-full lg:w-1/2 h-fit py-12 px-2  lg:px-12  rounded-lg shadow-lg border border-1 border-gray-200 relative"
+      className="bg-gray-100 text-gray-800 w-full lg:w-1/2 h-fit py-12 px-2  lg:px-12  rounded-lg shadow-lg border border-1 border-gray-200 relative"
       onClick={(e) => {
         e.stopPropagation();
       }}

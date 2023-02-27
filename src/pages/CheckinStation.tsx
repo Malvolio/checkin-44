@@ -33,7 +33,7 @@ const CheckinStation: FC<{}> = () => {
   };
 
   return (
-    <div className="fixed inset-0 flex flex-col bg-teal-200">
+    <div className="fixed inset-0 flex flex-col bg-gray-200">
       <EditAttendee
         attendee={selectedAttendee}
         close={() => setSelectedAttendee(null)}
@@ -44,7 +44,7 @@ const CheckinStation: FC<{}> = () => {
         <input
           type="text"
           placeholder="Search attendees..."
-          className="w-full px-6 py-2 text-lg rounded-full focus:outline-none focus:ring-4 focus:ring-blue-500 bg-teal-800 text-teal-100"
+          className="w-full px-6 py-2 text-lg rounded-full focus:outline-none focus:ring-4 focus:ring-blue-500 bg-gray-800 text-gray-100"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />

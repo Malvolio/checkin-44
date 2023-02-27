@@ -102,7 +102,7 @@ const CSVUploader: FC<{
         <>
           <div
             {...getRootProps()}
-            className="flex flex-col justify-center border-2 p-4 border-dashed border-teal-600 rounded-lg hover:bg-teal-300 hover:border-teal-400"
+            className="flex flex-col justify-center border-2 p-4 border-dashed border-gray-600 rounded-lg hover:bg-gray-300 hover:border-gray-400"
           >
             {acceptedFile ? (
               <>

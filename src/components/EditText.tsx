@@ -51,7 +51,7 @@ const EditText: FC<{
           }}
           onBlur={doExit}
           className={classnames(
-            "px-2 border-2 border-red-500 focus:border-transparent rounded w-80 bg-teal-300",
+            "px-2 border-2 border-red-500 focus:border-transparent rounded w-80 bg-gray-300",
             className
           )}
           value={editValue}
