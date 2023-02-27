@@ -1,5 +1,5 @@
 import classnames from "classnames";
-import { FC, ReactNode } from "react";
+import { FC, Fragment, ReactNode } from "react";
 import { Link } from "react-router-dom";
 
 export type FooterLink = {
@@ -11,7 +11,7 @@ export type FooterLink = {
 const Footer: FC<{ links: FooterLink[] }> = ({ links }) => (
   <div className="absolute left-0 bottom-0 w-full bg-cyan-700 flex flex-row justify-end p-3">
     {links.map(({ to, disabled, children }, index) => (
-      <>
+      <Fragment key={index}>
         {index ? <div className="text-sm mx-4">|</div> : null}
         <Link
           className={classnames("text-sm hover:text-cyan-200", {
@@ -23,7 +23,7 @@ const Footer: FC<{ links: FooterLink[] }> = ({ links }) => (
         >
           {children}
         </Link>
-      </>
+      </Fragment>
     ))}
   </div>
 );
