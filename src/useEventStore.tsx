@@ -1,7 +1,6 @@
 import { create } from "zustand";
 import { Event } from "./Attendee";
 import { Events } from "./MockData";
-
 interface EventStore {
   events: Event[];
   addEvent: (name: string) => Promise<Event>;
