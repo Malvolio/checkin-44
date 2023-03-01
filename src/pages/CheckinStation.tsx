@@ -1,10 +1,10 @@
 import * as React from "react";
 import { FC, useState } from "react";
-import { alterAttendee, Attendee, Event } from "../Attendee";
+import { alterAttendee, Attendee } from "../Attendee";
 import classnames from "classnames";
 import useEventStore from "../useEventStore";
 import { useParams } from "react-router-dom";
-import { EditAttendee } from "../components/EditAttendee";
+import EditAttendee from "../components/EditAttendee";
 import Footer from "../components/Footer";
 
 const CheckinStation: FC<{}> = () => {

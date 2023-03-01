@@ -3,7 +3,7 @@ import { Attendee, StationId } from "../Attendee";
 import Modal from "./Modal";
 import Button from "./Button";
 
-export const EditAttendee: FC<{
+const EditAttendee: FC<{
   attendee: Attendee | null;
   stationId: StationId;
   close: () => void;
@@ -36,7 +36,7 @@ export const EditAttendee: FC<{
             {attendee?.firstName} {attendee?.lastName}
           </div>
           <Button role="primary" onClick={checkOff}>
-            {attendee?.checkoff[stationId] ? "Un-" : ""}Check Off
+            {attendee?.checkoff[stationId] ? "Un-" : ""}Check In
           </Button>
         </div>
         <h2 className="text-sm font-bold">Notes</h2>
@@ -59,3 +59,4 @@ export const EditAttendee: FC<{
     </Modal>
   );
 };
+export default EditAttendee;
