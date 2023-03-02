@@ -11,9 +11,12 @@ const CheckinButton: FC<{
   attendee: Attendee;
   onCheckin: () => void;
   onSelect: () => void;
-  checkedIn: boolean;
-}> = ({ attendee, onCheckin, onSelect, checkedIn }) => {
+  stationId: number;
+}> = ({ attendee, onCheckin, onSelect, stationId }) => {
   const timeoutId = useRef<NodeJS.Timeout>();
+  const checkedIn = !!attendee.checkoff[stationId];
+  const hasNote = !checkedIn && !!attendee.notes[stationId];
+  const untouched = !checkedIn && !hasNote;
 
   const handleClick = () => {
     clearTimeout(timeoutId.current);
@@ -34,16 +37,14 @@ const CheckinButton: FC<{
   return (
     <button
       className={classnames(
-        "h-16 m-2 p-4 text-center rounded-xl transition-colors duration-200 ease-in-out",
+        "h-16 m-2 p-4 text-center rounded-xl transition-colors duration-200 ease-in-out focus:outline-0",
         {
-          "bg-blue-500": !checkedIn,
-          "hover:bg-blue-600": !checkedIn,
-          "focus:bg-blue-600": !checkedIn,
-          "active:bg-blue-700": !checkedIn,
-          "bg-green-500": checkedIn,
-          "hover:bg-green-600": checkedIn,
-          "focus:bg-green-600": checkedIn,
-          "active:bg-green-700": checkedIn,
+          "text-gray-500 bg-gray-200 hover:bg-white focus:bg-white active:bg-white":
+            untouched,
+          "text-white bg-green-600 hover:bg-green-700 focus:bg-green-700 active:bg-green-700":
+            checkedIn,
+          "text-white bg-yellow-400 hover:bg-yellow-700 focus:bg-yellow-700 active:bg-yellow-700":
+            hasNote,
         }
       )}
       onClick={handleClick}
@@ -90,7 +91,7 @@ const CheckinStation: FC<{}> = () => {
   };
 
   return (
-    <div className="fixed inset-0 flex flex-col bg-gray-200">
+    <div className="fixed inset-0 flex flex-col bg-amber-100">
       <EditAttendee
         attendee={selectedAttendee}
         close={() => setSelectedAttendee(null)}
@@ -114,7 +115,7 @@ const CheckinStation: FC<{}> = () => {
               attendee={attendee}
               onCheckin={() => checkIn(attendee)}
               onSelect={() => setSelectedAttendee(attendee)}
-              checkedIn={!!attendee.checkoff[stationId]}
+              stationId={stationId}
             />
           ))}
         </div>
