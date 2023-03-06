@@ -2,7 +2,7 @@ import { FC, PropsWithChildren } from "react";
 import classnames from "classnames";
 
 const ButtonRoles = {
-  primary: "bg-green-500 text-white hover:bg-green-600 border-green-200",
+  primary: "bg-green-600 text-white hover:bg-green-600 border-green-200",
   secondary:
     "text-base bg-slate-500 text-white hover:bg-slate-600 focus:bg-slate-600 active:bg-slate-700 ring-0",
   error:
