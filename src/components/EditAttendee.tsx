@@ -49,7 +49,7 @@ const EditAttendeeBody: FC<EditAttendeeProps & { attendee: Attendee }> = ({
         rows={3}
         placeholder="Add note..."
         onChange={(e) => setNote(e.currentTarget.value)}
-        value={note || attendee.notes[stationId] || ""}
+        value={note}
       />
       <div className="flex justify-end space-x-4">
         <Button role="secondary" onClick={close}>

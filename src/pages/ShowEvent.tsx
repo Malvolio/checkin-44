@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import {
   addStation,
   alterStation,
@@ -13,8 +13,11 @@ import useEventStore from "../useEventStore";
 import EditText from "../components/EditText";
 import AddButton from "../components/AddButton";
 import Page from "../components/Page";
+import Button from "../components/Button";
 
 const ShowEvent: FC<{ edit?: boolean }> = ({ edit }) => {
+  const navigate = useNavigate();
+
   const { eid } = useParams();
   const { getEvent, updateEvent } = useEventStore();
   const event = getEvent(Number(eid));
@@ -71,7 +74,7 @@ const ShowEvent: FC<{ edit?: boolean }> = ({ edit }) => {
           <h2 className="text-xl text-semibold my-5">Stations</h2>
           <ul className="m-3">
             {event.stations.map((station) => (
-              <li key={station.id}>
+              <li key={station.id} className="flex flex-row text-xl my-2">
                 {edit ? (
                   <EditText
                     value={station.name}
@@ -81,9 +84,14 @@ const ShowEvent: FC<{ edit?: boolean }> = ({ edit }) => {
                     editable={edit}
                   />
                 ) : (
-                  <Link to={`/event/${event.id}/checkin/${station.id}`}>
+                  <Button
+                    role="primary"
+                    onClick={() => {
+                      navigate(`/event/${event.id}/checkin/${station.id}`);
+                    }}
+                  >
                     {station.name}
-                  </Link>
+                  </Button>
                 )}
               </li>
             ))}

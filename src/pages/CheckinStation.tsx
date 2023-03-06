@@ -1,5 +1,5 @@
 import * as React from "react";
-import { FC, useRef, useState } from "react";
+import { FC, useCallback, useRef, useState } from "react";
 import { alterAttendee, Attendee } from "../Attendee";
 import classnames from "classnames";
 import useEventStore from "../useEventStore";
@@ -13,26 +13,36 @@ const CheckinButton: FC<{
   onSelect: () => void;
   stationId: number;
 }> = ({ attendee, onCheckin, onSelect, stationId }) => {
-  const timeoutId = useRef<NodeJS.Timeout>();
   const checkedIn = !!attendee.checkoff[stationId];
-  const hasNote = !checkedIn && !!attendee.notes[stationId];
-  const untouched = !checkedIn && !hasNote;
 
-  const handleClick = () => {
-    clearTimeout(timeoutId.current);
-    timeoutId.current = setTimeout(() => {
-      if (checkedIn) {
-        onSelect();
-      } else {
-        onCheckin();
+  const [pending, setPending] = useState<NodeJS.Timeout | null>(null);
+  const handleClick = useCallback(() => {
+    if (checkedIn) {
+      onSelect();
+      return;
+    }
+    setPending((p) => {
+      if (p) {
+        clearTimeout(p);
+        return null;
       }
-    }, 300);
-  };
+      return setTimeout(() => {
+        onCheckin();
+      }, 300);
+    });
+  }, []);
 
-  const handleDoubleClick = () => {
-    clearTimeout(timeoutId.current);
+  const handleDoubleClick = useCallback(() => {
+    setPending((p) => {
+      if (p) {
+        clearTimeout(p);
+      }
+      return null;
+    });
     onSelect();
-  };
+  }, []);
+
+  const hasNote = !!attendee.notes[stationId];
 
   return (
     <button
@@ -40,11 +50,11 @@ const CheckinButton: FC<{
         "h-16 m-2 p-4 text-center rounded-xl transition-colors duration-200 ease-in-out focus:outline-0",
         {
           "text-gray-500 bg-gray-200 hover:bg-white focus:bg-white active:bg-white":
-            untouched,
+            !checkedIn && !hasNote && !pending,
           "text-white bg-green-600 hover:bg-green-700 focus:bg-green-700 active:bg-green-700":
-            checkedIn,
+            checkedIn || !!pending,
           "text-white bg-yellow-400 hover:bg-yellow-700 focus:bg-yellow-700 active:bg-yellow-700":
-            hasNote,
+            hasNote && !pending && !checkedIn,
         }
       )}
       onClick={handleClick}
