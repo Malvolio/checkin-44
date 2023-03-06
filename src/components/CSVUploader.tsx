@@ -90,7 +90,6 @@ const CSVUploader: FC<{
           onUpload(translateCSV(results.data));
         }
       }}
-      noClick
     >
       {({
         getRootProps,
