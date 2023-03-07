@@ -1,8 +1,9 @@
 import { FC } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { PencilSquareIcon } from "@heroicons/react/24/solid";
+
 import AddButton from "../components/AddButton";
 import Button from "../components/Button";
-import EditIcon from "../components/EditIcon";
 import Hoverable from "../components/Hoverable";
 import Page from "../components/Page";
 import useEventStore from "../useEventStore";
@@ -29,7 +30,7 @@ export const ListEvents: FC<{ edit?: boolean }> = ({ edit }) => {
                   <Link to={`/event/${id}`}>{name}</Link>
                   <Hoverable onClick={() => navigate(`/event/${id}/edit`)}>
                     <div className="text-sm ml-2 h-5 w-5">
-                      <EditIcon />
+                      <PencilSquareIcon />
                     </div>
                   </Hoverable>
                 </>
