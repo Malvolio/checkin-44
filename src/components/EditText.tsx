@@ -1,5 +1,5 @@
 import { FC, useEffect, useRef, useState } from "react";
-import EditIcon from "./EditIcon";
+import { PencilSquareIcon } from "@heroicons/react/24/solid";
 import CancelIcon from "./CancelIcon";
 import Hoverable from "./Hoverable";
 import classnames from "classnames";
@@ -68,7 +68,7 @@ const EditText: FC<{
           {value}
         </div>
         <Hoverable onClick={() => setEdit(true)}>
-          <EditIcon />
+          <PencilSquareIcon />
         </Hoverable>
       </div>
     )
