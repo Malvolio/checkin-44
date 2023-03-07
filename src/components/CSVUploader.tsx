@@ -132,7 +132,7 @@ const CSVUploader: FC<{
                 </div>
               </>
             ) : (
-              "Drop CSV file here to upload Attendee list"
+              "Drop CSV file or click here to upload Attendee list"
             )}
           </div>
         </>
