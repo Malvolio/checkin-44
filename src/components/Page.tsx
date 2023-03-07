@@ -1,8 +1,8 @@
 import { FC, PropsWithChildren, ReactNode } from "react";
-import Footer, { FooterLink } from "./Footer";
+import Footer, { FooterLinkDescription } from "./Footer";
 
 const Page: FC<
-  PropsWithChildren<{ links: FooterLink[]; title: ReactNode }>
+  PropsWithChildren<{ links: FooterLinkDescription[]; title: ReactNode }>
 > = ({ title, children, links }) => (
   <div
     className="fixed inset-0 flex flex-col items-center justify-center bg-gray-300 text-gray-700"

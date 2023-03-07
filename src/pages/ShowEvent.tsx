@@ -65,7 +65,11 @@ const ShowEvent: FC<{ edit?: boolean }> = ({ edit }) => {
               children: "Done editing",
               disabled: cannotExit,
             }
-          : { to: `/event/${event.id}/edit`, children: "Edit this event" },
+          : {
+              to: `/event/${event.id}/edit`,
+              children: "Edit this event",
+              edit: true,
+            },
         { to: `/`, children: "All events", disabled: cannotExit },
       ]}
     >

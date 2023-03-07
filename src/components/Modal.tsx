@@ -25,10 +25,13 @@ const Modal: FC<PropsWithChildren<{ showing: boolean; close: () => void }>> = ({
         "scale-0": !showing,
       }
     )}
-    onClick={close}
+    onClick={(e) => {
+      e.stopPropagation();
+      close();
+    }}
   >
     <div
-      className="bg-gray-100 text-gray-800 w-full lg:w-1/2 h-fit py-12 px-2  lg:px-12  rounded-lg shadow-lg border border-1 border-gray-200 relative"
+      className="bg-gray-100 text-gray-800 w-full lg:w-1/2 h-fit py-12 px-2  lg:px-12 rounded-lg shadow-lg border border-1 border-gray-200 relative flex justify-center"
       onClick={(e) => {
         e.stopPropagation();
       }}

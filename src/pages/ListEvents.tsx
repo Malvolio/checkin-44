@@ -17,7 +17,7 @@ export const ListEvents: FC<{ edit?: boolean }> = ({ edit }) => {
       links={[
         edit
           ? { to: `/`, children: "Done editing events" }
-          : { to: `/edit`, children: "Edit events" },
+          : { to: `/edit`, children: "Edit events", edit: true },
       ]}
     >
       <div className="flex flex-col items-center px-20 py-5">
